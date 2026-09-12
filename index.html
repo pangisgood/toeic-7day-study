@@ -3,158 +3,462 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f5f6f8">
+<meta name="theme-color" content="#f6f7f9">
 <title>TOEIC 7일 공부</title>
+
 <style>
-:root{--bg:#f5f6f8;--card:#fff;--ink:#182033;--muted:#6d7483;--line:#e3e6ec;--nav:#182033;--blue:#2f66a6;--blue-bg:#edf4ff;--red:#a04742;--red-bg:#fff2ef;--green:#397461;--green-bg:#eef8f4}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR",Arial,sans-serif;line-height:1.55}
-button,input{font:inherit}button{-webkit-tap-highlight-color:transparent}.app{max-width:760px;margin:auto;padding:16px 14px 90px}
-h1{font-size:26px;line-height:1.2;margin:4px 0 4px}h2{font-size:21px;margin:0 0 12px}h3{font-size:17px;margin:0}.sub,.muted{color:var(--muted);font-size:13px}.top{padding:8px 2px 12px}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 6px;text-align:center;min-height:76px}button.stat{cursor:pointer;color:var(--ink)}button.stat:active{transform:scale(.98)}.stat b{display:block;font-size:21px;line-height:1.2}.stat span{display:block;font-size:12px;color:var(--muted);margin-top:5px}.stat.action{border-color:#ced9e8;background:#fbfdff}.stat.action b{color:var(--blue)}
-.tabs{position:sticky;top:0;z-index:20;display:flex;gap:7px;overflow:auto;padding:9px 0 11px;background:linear-gradient(var(--bg) 86%,transparent);scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{border:1px solid var(--line);background:#fff;border-radius:22px;padding:9px 15px;white-space:nowrap;font-weight:800;color:#50596b}.tab.active{background:var(--nav);color:#fff;border-color:var(--nav)}.page{display:none}.page.active{display:block}
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;margin:10px 0;box-shadow:0 1px 2px #00000008}.part-head{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}.part-pill{flex:none;font-size:12px;font-weight:900;padding:5px 9px;border-radius:999px;background:var(--blue-bg);color:var(--blue)}.rc .part-pill{background:var(--red-bg);color:var(--red)}.part-title{font-size:19px;font-weight:900}.goal{background:#f7f8fa;padding:11px 12px;border-radius:12px;margin:10px 0;font-size:13px}.goal b{color:var(--blue)}.rc .goal b{color:var(--red)}
-.section-title{font-size:14px;font-weight:900;color:var(--blue);background:var(--blue-bg);padding:7px 10px;border-radius:9px;margin:14px 0 7px}.rc .section-title{color:var(--red);background:var(--red-bg)}.tips{padding-left:20px;margin:8px 0}.tips li{margin:5px 0}.rows{display:grid}.row{display:grid;grid-template-columns:minmax(145px,1fr) 1fr;gap:10px;padding:7px 2px;border-bottom:1px solid #eef0f4;font-size:14px}.row:last-child{border-bottom:0}.row b{font-weight:800}.row span{color:#4e5768}
-.filters{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.filter{padding:8px 11px;border-radius:11px;border:1px solid var(--line);background:#fff;font-weight:800;font-size:13px}.filter.active{background:var(--nav);color:#fff;border-color:var(--nav)}.note{padding:11px 12px;background:#f7f8fa;border-radius:11px;font-size:13px;margin:9px 0}.word{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:9px;padding:10px 2px;border-bottom:1px solid #edf0f4}.word input,.review-check input{width:20px;height:20px;accent-color:var(--blue)}.word small{display:block;color:var(--muted);font-size:13px}.word small.expr{color:var(--blue);margin-top:3px;font-size:12px}.chip{display:inline-block;padding:3px 8px;border-radius:10px;font-size:11px;font-weight:900;background:#eef1f5}
-.quiz-item{padding:16px 0;border-bottom:1px solid #e8ebf0}.quiz-item:last-child{border-bottom:0}.qtop{display:flex;align-items:center;justify-content:space-between;gap:8px}.review-check{display:flex;align-items:center;gap:5px;font-size:12px;color:#5e6676;white-space:nowrap}.q{font-size:16px;font-weight:800;margin:9px 0 11px}.context{white-space:pre-line;background:#f7f8fa;border-radius:11px;padding:11px 12px;font-size:13px;margin:8px 0}.choices{display:grid;gap:8px}.choice{width:100%;text-align:left;padding:11px 12px;background:#fff;border:1px solid #dfe3e9;border-radius:11px;color:var(--ink)}.choice.correct{border-color:#4a876e;background:#edf8f3}.choice.wrong{border-color:#b45c55;background:#fff0ee}.result{margin-top:9px;font-size:13px;font-weight:900}.explain{margin-top:7px;padding:10px 12px;background:#f5f6f8;border-radius:10px;font-size:13px}.count{font-size:13px;color:var(--muted)}.footer{text-align:center;color:#8b92a0;font-size:12px;margin-top:28px}
-.strategy-step{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;padding:11px 0;border-bottom:1px solid #edf0f4}.step-no{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--nav);color:#fff;font-weight:900;font-size:12px}
-@media(max-width:430px){.app{padding-left:11px;padding-right:11px}.stats{gap:6px}.row{grid-template-columns:1fr;gap:2px}}
+html,body{
+  margin:0;
+  min-height:100%;
+  background:#f5f6f8;
+  color:#182033;
+  font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR",Arial,sans-serif
+}
+.loading{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  text-align:center
+}
+.loading b{
+  display:block;
+  font-size:21px;
+  margin-bottom:7px
+}
+.loading span{
+  font-size:13px;
+  color:#6d7483
+}
 </style>
 </head>
+
 <body>
-<main class="app">
-<header class="top">
-<h1>TOEIC 7일 공부</h1>
-<div class="sub">LC/RC 핵심정리 · TOEIC 핵심 300 · 파트별 문제풀이</div>
-<div class="stats">
-<button class="stat action" data-action="open-review-words"><b id="reviewWordCount">0</b><span>다시 볼 단어</span></button>
-<button class="stat action" data-action="open-review-questions"><b id="reviewQuestionCount">0</b><span>다시 볼 문제</span></button>
+
+<div class="loading" id="loading">
+  <div>
+    <b>TOEIC 7일 공부</b>
+    <span>학습 페이지를 불러오는 중입니다.</span>
+  </div>
 </div>
-</header>
-<nav class="tabs" id="tabs"></nav>
-<section id="pages"></section>
-<div class="footer">체크·오답 기록은 이 기기의 브라우저에 저장됩니다.</div>
-</main>
 
 <script>
-const PARTS=[{"part": "P1", "group": "LC", "title": "Part 1 사진 묘사", "desc": "사진에서 실제로 보이는 동작·상태·위치를 빠르게 잡는 파트.", "goal": "사람 동작 → 사물 상태 → 위치 표현 순으로 확인", "tips": ["reaching for, pointing at, leaning against처럼 손·몸 방향이 보이는 동작을 먼저 본다.", "사물이 주어면 are stacked, is mounted처럼 be + p.p. 상태 표현을 의심한다.", "사진에 없는 대상이나 과장된 행동을 말하면 오답일 가능성이 높다.", "is being + p.p.는 진행 중인 동작, is + p.p.는 이미 만들어진 상태."], "rows": [["be reaching for", "~을 잡으려고 손을 뻗다"], ["be inspecting", "점검하다"], ["be leaning against", "~에 기대다"], ["be lined up", "줄지어 있다"], ["be mounted", "설치되어 있다"], ["be surrounded by", "~에 둘러싸여 있다"]]}, {"part": "P2", "group": "LC", "title": "Part 2 질의응답", "desc": "첫 의문사와 질문 의도를 잡고 간접답변까지 정답으로 인정하는 파트.", "goal": "Who/Where/When/Why/How → 답의 범위 먼저 결정", "tips": ["질문의 첫 1~2단어를 놓치지 않는다.", "Yes/No 질문도 '아직 확인 중이에요', '그에게 물어보세요' 같은 간접답변이 자주 정답이다.", "질문 단어를 그대로 반복하는 선택지는 함정일 수 있다.", "Would you mind ~?의 수락은 Not at all. 이 자연스럽다."], "rows": [["How often", "빈도"], ["How long", "기간"], ["How far", "거리"], ["Either one is fine.", "둘 중 어느 것이든 괜찮아요."], ["Let me check.", "확인해 볼게요."], ["Not that I know of.", "제가 알기로는 아니에요."]]}, {"part": "P3", "group": "LC", "title": "Part 3 짧은 대화", "desc": "장소·목적·문제·다음 행동이 반복되는 대화형 문제.", "goal": "질문 먼저 → 초반 상황 → 중간 문제 → 마지막 행동", "tips": ["음원 시작 전 질문과 선택지에서 사람·장소·시간·행동 키워드만 훑는다.", "첫 1~2문장에서 관계와 목적을 잡는다.", "Unfortunately, problem, but 이후에 문제 상황이 많이 나온다.", "I'll~, Let me~, Why don't we~ 뒤는 다음 행동 문제의 근거가 된다."], "rows": [["deadline / submit", "마감 / 제출"], ["in stock / out of stock", "재고 있음 / 품절"], ["refund / replacement", "환불 / 교체"], ["fully booked", "예약 마감"], ["technician", "기술자"], ["reschedule", "일정 변경하다"]]}, {"part": "P4", "group": "LC", "title": "Part 4 설명문", "desc": "공지·광고·음성메시지·안내방송의 정형적인 흐름을 이용하는 파트.", "goal": "첫 문장 주제 → 중간 세부정보 → 마지막 요청/변경사항", "tips": ["Please be advised that, We are pleased to announce that 뒤에 핵심 공지가 나온다.", "Please remember, be sure to, don't forget to 뒤는 행동 문제 정답 후보.", "숫자·가격·날짜·층수는 직접 문제로 연결될 가능성이 높다.", "광고는 혜택·기간·조건, 공지는 변경사항·적용시점을 본다."], "rows": [["no later than", "늦어도 ~까지"], ["prior to", "~전에"], ["on behalf of", "~을 대신하여"], ["for further information", "추가 정보는"], ["registration", "등록"], ["limited-time offer", "기간 한정 혜택"]]}, {"part": "P5", "group": "RC", "title": "Part 5 단문 공란 채우기", "desc": "품사·수일치·시제/태·전치사·접속사·어휘를 빠르게 판단하는 파트.", "goal": "품사 → 동사 → 접속사/전치사 → 어휘·숙어 순서로 10~20초 판단", "tips": ["보기 4개가 같은 어근이면 해석 전에 품사 문제인지 확인한다.", "a number of + 복수명사 = 복수동사, the number of + 복수명사 = 단수동사.", "because + S+V / because of + 명사, although + S+V / despite + 명사 구분.", "look forward to, be committed to의 to는 전치사라 뒤에 -ing가 온다.", "어휘는 단어 뜻 하나보다 collocation으로 외운다."], "rows": [["comply with", "~을 준수하다"], ["be responsible for", "~을 담당하다"], ["be subject to", "~의 대상이다 / 변경될 수 있다"], ["according to", "~에 따르면"], ["regardless of", "~와 관계없이"], ["due to", "~ 때문에"]]}, {"part": "P6", "group": "RC", "title": "Part 6 장문 공란 채우기", "desc": "Part 5 문법에 문맥 연결과 문장 삽입이 더해지는 파트.", "goal": "빈칸 앞뒤 1문장까지 읽어 논리 흐름·지시어·시제 확인", "tips": ["however = 대조, therefore/as a result = 결과, moreover/in addition = 추가.", "this/these/such가 나오면 앞 문장의 대상을 찾는다.", "문장 삽입은 지시어·시제·시간순서가 자연스러운지 본다."], "rows": [["however", "그러나"], ["therefore", "따라서"], ["in addition", "추가로"], ["otherwise", "그렇지 않으면"], ["meanwhile", "한편"], ["subsequently", "그 후에"]]}, {"part": "P7", "group": "RC", "title": "Part 7 독해", "desc": "완벽한 번역보다 근거 위치와 패러프레이징을 찾는 파트.", "goal": "문제 먼저 → 키워드 표시 → 근거 위치 → 동의어 변환 확인", "tips": ["목적 문제는 제목·첫 문장·마지막 요청을 먼저 본다.", "날짜·가격·주문번호·사람 이름처럼 검색 가능한 키워드로 근거를 찾는다.", "추론 문제는 상식이 아니라 지문 근거 2개를 연결한다.", "Part 7에 최소 50분 이상 남기는 것을 목표로 한다."], "rows": [["position = job opening", "채용 자리"], ["candidate = applicant", "지원자"], ["complimentary = free of charge", "무료의"], ["postpone = put off", "연기하다"], ["cancel = call off", "취소하다"], ["defective = faulty", "결함 있는"]]}];
-const VOCAB=[{"p": "P1", "en": "be seated", "ko": "앉아 있다", "expr": "be seated at a table", "id": "P1|be seated"}, {"p": "P1", "en": "be standing", "ko": "서 있다", "expr": "be standing near the entrance", "id": "P1|be standing"}, {"p": "P1", "en": "be strolling", "ko": "거닐다", "expr": "be strolling along a path", "id": "P1|be strolling"}, {"p": "P1", "en": "be approaching", "ko": "다가가다", "expr": "be approaching a building", "id": "P1|be approaching"}, {"p": "P1", "en": "be boarding", "ko": "탑승하다", "expr": "be boarding a bus", "id": "P1|be boarding"}, {"p": "P1", "en": "be reaching for", "ko": "~을 잡으려고 손을 뻗다", "expr": "be reaching for a folder", "id": "P1|be reaching for"}, {"p": "P1", "en": "be examining", "ko": "살펴보다", "expr": "be examining a document", "id": "P1|be examining"}, {"p": "P1", "en": "be inspecting", "ko": "점검하다", "expr": "be inspecting equipment", "id": "P1|be inspecting"}, {"p": "P1", "en": "be leaning against", "ko": "~에 기대다", "expr": "be leaning against a wall", "id": "P1|be leaning against"}, {"p": "P1", "en": "be bending over", "ko": "몸을 숙이다", "expr": "be bending over a desk", "id": "P1|be bending over"}, {"p": "P1", "en": "be pointing at", "ko": "~을 가리키다", "expr": "be pointing at a screen", "id": "P1|be pointing at"}, {"p": "P1", "en": "be handing A to B", "ko": "A를 B에게 건네다", "expr": "be handing a file to a colleague", "id": "P1|be handing A to B"}, {"p": "P1", "en": "be pouring", "ko": "붓고 있다", "expr": "be pouring a beverage", "id": "P1|be pouring"}, {"p": "P1", "en": "be arranging", "ko": "정리·배열하다", "expr": "be arranging items on a shelf", "id": "P1|be arranging"}, {"p": "P1", "en": "be loading", "ko": "싣고 있다", "expr": "be loading boxes onto a truck", "id": "P1|be loading"}, {"p": "P1", "en": "be unloading", "ko": "내리고 있다", "expr": "be unloading supplies", "id": "P1|be unloading"}, {"p": "P1", "en": "be sweeping", "ko": "쓸고 있다", "expr": "be sweeping the floor", "id": "P1|be sweeping"}, {"p": "P1", "en": "be assembling", "ko": "조립하고 있다", "expr": "be assembling furniture", "id": "P1|be assembling"}, {"p": "P1", "en": "be stacked", "ko": "쌓여 있다", "expr": "boxes are stacked", "id": "P1|be stacked"}, {"p": "P1", "en": "be scattered", "ko": "흩어져 있다", "expr": "papers are scattered", "id": "P1|be scattered"}, {"p": "P1", "en": "be displayed", "ko": "진열되어 있다", "expr": "products are displayed", "id": "P1|be displayed"}, {"p": "P1", "en": "be lined up", "ko": "줄지어 있다", "expr": "chairs are lined up", "id": "P1|be lined up"}, {"p": "P1", "en": "be mounted", "ko": "설치되어 있다", "expr": "a monitor is mounted on the wall", "id": "P1|be mounted"}, {"p": "P1", "en": "be attached", "ko": "부착되어 있다", "expr": "a sign is attached to the door", "id": "P1|be attached"}, {"p": "P1", "en": "be suspended", "ko": "매달려 있다", "expr": "lights are suspended from the ceiling", "id": "P1|be suspended"}, {"p": "P1", "en": "be covered with", "ko": "~로 덮여 있다", "expr": "a table is covered with documents", "id": "P1|be covered with"}, {"p": "P1", "en": "be surrounded by", "ko": "~에 둘러싸여 있다", "expr": "a building is surrounded by trees", "id": "P1|be surrounded by"}, {"p": "P1", "en": "be filled with", "ko": "~로 가득 차 있다", "expr": "a room is filled with chairs", "id": "P1|be filled with"}, {"p": "P1", "en": "be occupied", "ko": "사용 중이다", "expr": "all seats are occupied", "id": "P1|be occupied"}, {"p": "P1", "en": "be parked", "ko": "주차되어 있다", "expr": "vehicles are parked outside", "id": "P1|be parked"}, {"p": "P1", "en": "aisle", "ko": "통로", "expr": "walk down an aisle", "id": "P1|aisle"}, {"p": "P1", "en": "railing", "ko": "난간", "expr": "stand beside a railing", "id": "P1|railing"}, {"p": "P1", "en": "cabinet", "ko": "수납장", "expr": "open a cabinet", "id": "P1|cabinet"}, {"p": "P1", "en": "counter", "ko": "카운터", "expr": "place items on the counter", "id": "P1|counter"}, {"p": "P1", "en": "walkway", "ko": "보행로", "expr": "walk along a walkway", "id": "P1|walkway"}, {"p": "P2", "en": "How often", "ko": "얼마나 자주", "expr": "How often do you update it?", "id": "P2|How often"}, {"p": "P2", "en": "How long", "ko": "얼마나 오래", "expr": "How long will it take?", "id": "P2|How long"}, {"p": "P2", "en": "How far", "ko": "얼마나 멀리", "expr": "How far is the station?", "id": "P2|How far"}, {"p": "P2", "en": "How much", "ko": "얼마나 / 얼마", "expr": "How much does it cost?", "id": "P2|How much"}, {"p": "P2", "en": "How many", "ko": "몇 개", "expr": "How many people attended?", "id": "P2|How many"}, {"p": "P2", "en": "Would you mind ~ing?", "ko": "~해주시겠어요?", "expr": "Would you mind closing the door?", "id": "P2|Would you mind ~ing?"}, {"p": "P2", "en": "Why don't we ~?", "ko": "~하는 게 어때요?", "expr": "Why don't we meet tomorrow?", "id": "P2|Why don't we ~?"}, {"p": "P2", "en": "How about ~ing?", "ko": "~하는 건 어때요?", "expr": "How about taking a taxi?", "id": "P2|How about ~ing?"}, {"p": "P2", "en": "Would you like to ~?", "ko": "~하시겠어요?", "expr": "Would you like to join us?", "id": "P2|Would you like to ~?"}, {"p": "P2", "en": "Could you ~?", "ko": "~해주시겠어요?", "expr": "Could you send the file?", "id": "P2|Could you ~?"}, {"p": "P2", "en": "Not at all.", "ko": "괜찮습니다 / 물론이죠", "expr": "Not at all. I'll do it now.", "id": "P2|Not at all."}, {"p": "P2", "en": "I'd be happy to.", "ko": "기꺼이 할게요", "expr": "I'd be happy to help.", "id": "P2|I'd be happy to."}, {"p": "P2", "en": "I'm afraid I can't.", "ko": "유감이지만 어렵습니다", "expr": "I'm afraid I can't make it.", "id": "P2|I'm afraid I can't."}, {"p": "P2", "en": "I'm still working on it.", "ko": "아직 작업 중이에요", "expr": "Have you finished? — I'm still working on it.", "id": "P2|I'm still working on it."}, {"p": "P2", "en": "Let me check.", "ko": "확인해 볼게요", "expr": "Let me check the schedule.", "id": "P2|Let me check."}, {"p": "P2", "en": "I'll find out.", "ko": "제가 알아볼게요", "expr": "I'll find out and call you back.", "id": "P2|I'll find out."}, {"p": "P2", "en": "It depends.", "ko": "상황에 따라 달라요", "expr": "It depends on the weather.", "id": "P2|It depends."}, {"p": "P2", "en": "Either one is fine.", "ko": "둘 중 어느 것이든 괜찮아요", "expr": "Which one? — Either one is fine.", "id": "P2|Either one is fine."}, {"p": "P2", "en": "Not that I know of.", "ko": "제가 알기로는 아니에요", "expr": "Is it canceled? — Not that I know of.", "id": "P2|Not that I know of."}, {"p": "P2", "en": "As soon as possible.", "ko": "가능한 한 빨리", "expr": "When do you need it? — As soon as possible.", "id": "P2|As soon as possible."}, {"p": "P2", "en": "I can take care of it.", "ko": "제가 처리할게요", "expr": "Don't worry. I can take care of it.", "id": "P2|I can take care of it."}, {"p": "P2", "en": "That would be great.", "ko": "그러면 좋겠어요", "expr": "Can I help? — That would be great.", "id": "P2|That would be great."}, {"p": "P2", "en": "I haven't decided yet.", "ko": "아직 결정하지 않았어요", "expr": "Which option? — I haven't decided yet.", "id": "P2|I haven't decided yet."}, {"p": "P2", "en": "You'd better ask him.", "ko": "그에게 물어보는 게 좋겠어요", "expr": "You'd better ask the manager.", "id": "P2|You'd better ask him."}, {"p": "P2", "en": "get back to someone", "ko": "다시 연락하다", "expr": "I'll get back to you tomorrow.", "id": "P2|get back to someone"}, {"p": "P3", "en": "agenda", "ko": "회의 안건", "expr": "review the meeting agenda", "id": "P3|agenda"}, {"p": "P3", "en": "attendee", "ko": "참석자", "expr": "conference attendees", "id": "P3|attendee"}, {"p": "P3", "en": "reschedule", "ko": "일정을 변경하다", "expr": "reschedule an appointment", "id": "P3|reschedule"}, {"p": "P3", "en": "postpone", "ko": "연기하다", "expr": "postpone a meeting", "id": "P3|postpone"}, {"p": "P3", "en": "deadline", "ko": "마감일", "expr": "meet a deadline", "id": "P3|deadline"}, {"p": "P3", "en": "submit", "ko": "제출하다", "expr": "submit a report", "id": "P3|submit"}, {"p": "P3", "en": "approve", "ko": "승인하다", "expr": "approve a proposal", "id": "P3|approve"}, {"p": "P3", "en": "revise", "ko": "수정하다", "expr": "revise a document", "id": "P3|revise"}, {"p": "P3", "en": "proposal", "ko": "제안서", "expr": "prepare a proposal", "id": "P3|proposal"}, {"p": "P3", "en": "estimate", "ko": "견적 / 추정치", "expr": "provide an estimate", "id": "P3|estimate"}, {"p": "P3", "en": "budget", "ko": "예산", "expr": "stay within budget", "id": "P3|budget"}, {"p": "P3", "en": "expense", "ko": "비용 / 경비", "expr": "travel expenses", "id": "P3|expense"}, {"p": "P3", "en": "reimbursement", "ko": "비용 상환 / 환급", "expr": "request reimbursement", "id": "P3|reimbursement"}, {"p": "P3", "en": "place an order", "ko": "주문하다", "expr": "place an order online", "id": "P3|place an order"}, {"p": "P3", "en": "purchase order", "ko": "구매 주문서", "expr": "issue a purchase order", "id": "P3|purchase order"}, {"p": "P3", "en": "in stock", "ko": "재고가 있는", "expr": "currently in stock", "id": "P3|in stock"}, {"p": "P3", "en": "out of stock", "ko": "품절된", "expr": "temporarily out of stock", "id": "P3|out of stock"}, {"p": "P3", "en": "inventory", "ko": "재고", "expr": "check inventory levels", "id": "P3|inventory"}, {"p": "P3", "en": "warehouse", "ko": "창고", "expr": "stored in a warehouse", "id": "P3|warehouse"}, {"p": "P3", "en": "shipment", "ko": "배송품 / 발송", "expr": "track a shipment", "id": "P3|shipment"}, {"p": "P3", "en": "delivery", "ko": "배송", "expr": "schedule a delivery", "id": "P3|delivery"}, {"p": "P3", "en": "invoice", "ko": "송장 / 청구서", "expr": "send an invoice", "id": "P3|invoice"}, {"p": "P3", "en": "receipt", "ko": "영수증", "expr": "keep the receipt", "id": "P3|receipt"}, {"p": "P3", "en": "refund", "ko": "환불", "expr": "request a refund", "id": "P3|refund"}, {"p": "P3", "en": "replacement", "ko": "교체품", "expr": "send a replacement", "id": "P3|replacement"}, {"p": "P3", "en": "warranty", "ko": "보증", "expr": "under warranty", "id": "P3|warranty"}, {"p": "P3", "en": "vendor", "ko": "판매업체 / 공급업체", "expr": "contact a vendor", "id": "P3|vendor"}, {"p": "P3", "en": "supplier", "ko": "공급업체", "expr": "local supplier", "id": "P3|supplier"}, {"p": "P3", "en": "client", "ko": "고객 / 거래처", "expr": "meet with a client", "id": "P3|client"}, {"p": "P3", "en": "supervisor", "ko": "상사 / 관리자", "expr": "ask a supervisor", "id": "P3|supervisor"}, {"p": "P3", "en": "colleague", "ko": "동료", "expr": "speak with a colleague", "id": "P3|colleague"}, {"p": "P3", "en": "department", "ko": "부서", "expr": "sales department", "id": "P3|department"}, {"p": "P3", "en": "headquarters", "ko": "본사", "expr": "company headquarters", "id": "P3|headquarters"}, {"p": "P3", "en": "branch office", "ko": "지점", "expr": "regional branch office", "id": "P3|branch office"}, {"p": "P3", "en": "conference room", "ko": "회의실", "expr": "reserve a conference room", "id": "P3|conference room"}, {"p": "P3", "en": "conference call", "ko": "전화 / 화상 회의", "expr": "join a conference call", "id": "P3|conference call"}, {"p": "P3", "en": "appointment", "ko": "예약 / 약속", "expr": "make an appointment", "id": "P3|appointment"}, {"p": "P3", "en": "reservation", "ko": "예약", "expr": "confirm a reservation", "id": "P3|reservation"}, {"p": "P3", "en": "availability", "ko": "이용 가능 여부", "expr": "check availability", "id": "P3|availability"}, {"p": "P3", "en": "fully booked", "ko": "예약이 꽉 찬", "expr": "the hotel is fully booked", "id": "P3|fully booked"}, {"p": "P3", "en": "vacancy", "ko": "빈자리 / 빈방", "expr": "room vacancy", "id": "P3|vacancy"}, {"p": "P3", "en": "accommodate", "ko": "수용하다 / 편의를 제공하다", "expr": "accommodate guests", "id": "P3|accommodate"}, {"p": "P3", "en": "itinerary", "ko": "여행 일정표", "expr": "review an itinerary", "id": "P3|itinerary"}, {"p": "P3", "en": "departure", "ko": "출발", "expr": "departure time", "id": "P3|departure"}, {"p": "P3", "en": "arrival", "ko": "도착", "expr": "arrival time", "id": "P3|arrival"}, {"p": "P3", "en": "boarding pass", "ko": "탑승권", "expr": "show a boarding pass", "id": "P3|boarding pass"}, {"p": "P3", "en": "baggage claim", "ko": "수하물 찾는 곳", "expr": "go to baggage claim", "id": "P3|baggage claim"}, {"p": "P3", "en": "platform", "ko": "승강장", "expr": "train platform", "id": "P3|platform"}, {"p": "P3", "en": "fare", "ko": "요금", "expr": "bus fare", "id": "P3|fare"}, {"p": "P3", "en": "maintenance", "ko": "유지보수", "expr": "routine maintenance", "id": "P3|maintenance"}, {"p": "P3", "en": "repair", "ko": "수리", "expr": "request a repair", "id": "P3|repair"}, {"p": "P3", "en": "malfunction", "ko": "오작동", "expr": "equipment malfunction", "id": "P3|malfunction"}, {"p": "P3", "en": "technician", "ko": "기술자", "expr": "send a technician", "id": "P3|technician"}, {"p": "P3", "en": "renovation", "ko": "보수공사", "expr": "under renovation", "id": "P3|renovation"}, {"p": "P3", "en": "relocate", "ko": "이전하다 / 옮기다", "expr": "relocate an office", "id": "P3|relocate"}, {"p": "P4", "en": "announcement", "ko": "공지", "expr": "make an announcement", "id": "P4|announcement"}, {"p": "P4", "en": "notice", "ko": "안내문 / 공지", "expr": "post a notice", "id": "P4|notice"}, {"p": "P4", "en": "advertisement", "ko": "광고", "expr": "place an advertisement", "id": "P4|advertisement"}, {"p": "P4", "en": "recorded message", "ko": "녹음 안내", "expr": "listen to a recorded message", "id": "P4|recorded message"}, {"p": "P4", "en": "orientation", "ko": "오리엔테이션", "expr": "employee orientation", "id": "P4|orientation"}, {"p": "P4", "en": "seminar", "ko": "세미나", "expr": "attend a seminar", "id": "P4|seminar"}, {"p": "P4", "en": "workshop", "ko": "워크숍", "expr": "training workshop", "id": "P4|workshop"}, {"p": "P4", "en": "conference", "ko": "회의 / 학회", "expr": "annual conference", "id": "P4|conference"}, {"p": "P4", "en": "exhibition", "ko": "전시회", "expr": "art exhibition", "id": "P4|exhibition"}, {"p": "P4", "en": "guided tour", "ko": "안내 투어", "expr": "join a guided tour", "id": "P4|guided tour"}, {"p": "P4", "en": "opening hours", "ko": "운영 시간", "expr": "check opening hours", "id": "P4|opening hours"}, {"p": "P4", "en": "admission", "ko": "입장 / 입장료", "expr": "admission fee", "id": "P4|admission"}, {"p": "P4", "en": "registration", "ko": "등록", "expr": "complete registration", "id": "P4|registration"}, {"p": "P4", "en": "subscription", "ko": "구독", "expr": "renew a subscription", "id": "P4|subscription"}, {"p": "P4", "en": "membership", "ko": "회원권 / 회원 자격", "expr": "annual membership", "id": "P4|membership"}, {"p": "P4", "en": "promotion", "ko": "판촉 / 승진", "expr": "special promotion", "id": "P4|promotion"}, {"p": "P4", "en": "special offer", "ko": "특별 할인 / 혜택", "expr": "take advantage of a special offer", "id": "P4|special offer"}, {"p": "P4", "en": "limited-time offer", "ko": "기간 한정 혜택", "expr": "limited-time offer ends Friday", "id": "P4|limited-time offer"}, {"p": "P4", "en": "survey", "ko": "설문조사", "expr": "conduct a survey", "id": "P4|survey"}, {"p": "P4", "en": "questionnaire", "ko": "설문지", "expr": "complete a questionnaire", "id": "P4|questionnaire"}, {"p": "P4", "en": "policy", "ko": "정책 / 규정", "expr": "company policy", "id": "P4|policy"}, {"p": "P4", "en": "procedure", "ko": "절차", "expr": "follow a procedure", "id": "P4|procedure"}, {"p": "P4", "en": "guideline", "ko": "지침", "expr": "safety guidelines", "id": "P4|guideline"}, {"p": "P4", "en": "regulation", "ko": "규정", "expr": "comply with regulations", "id": "P4|regulation"}, {"p": "P4", "en": "weather forecast", "ko": "일기예보", "expr": "according to the weather forecast", "id": "P4|weather forecast"}, {"p": "P4", "en": "traffic report", "ko": "교통 정보", "expr": "morning traffic report", "id": "P4|traffic report"}, {"p": "P4", "en": "flight delay", "ko": "항공편 지연", "expr": "due to a flight delay", "id": "P4|flight delay"}, {"p": "P4", "en": "gate change", "ko": "탑승구 변경", "expr": "announce a gate change", "id": "P4|gate change"}, {"p": "P4", "en": "emergency exit", "ko": "비상구", "expr": "locate the emergency exit", "id": "P4|emergency exit"}, {"p": "P4", "en": "Please be advised that", "ko": "~을 알려드립니다", "expr": "Please be advised that the office will close early.", "id": "P4|Please be advised that"}, {"p": "P4", "en": "We regret to inform you that", "ko": "유감스럽게도 ~을 알려드립니다", "expr": "We regret to inform you that the event is canceled.", "id": "P4|We regret to inform you that"}, {"p": "P4", "en": "We are pleased to announce that", "ko": "기쁘게 ~을 알려드립니다", "expr": "We are pleased to announce that registration is open.", "id": "P4|We are pleased to announce that"}, {"p": "P4", "en": "no later than", "ko": "늦어도 ~까지", "expr": "submit no later than Friday", "id": "P4|no later than"}, {"p": "P4", "en": "at your earliest convenience", "ko": "가능한 한 빨리", "expr": "reply at your earliest convenience", "id": "P4|at your earliest convenience"}, {"p": "P4", "en": "for further information", "ko": "추가 정보는", "expr": "For further information, visit our website.", "id": "P4|for further information"}, {"p": "P4", "en": "be required to", "ko": "~해야 한다", "expr": "employees are required to attend", "id": "P4|be required to"}, {"p": "P4", "en": "be eligible for", "ko": "~할 자격이 있다", "expr": "be eligible for a discount", "id": "P4|be eligible for"}, {"p": "P4", "en": "prior to", "ko": "~전에", "expr": "prior to departure", "id": "P4|prior to"}, {"p": "P4", "en": "on behalf of", "ko": "~을 대신하여", "expr": "on behalf of the company", "id": "P4|on behalf of"}, {"p": "P4", "en": "in response to", "ko": "~에 대한 답변으로", "expr": "in response to your inquiry", "id": "P4|in response to"}, {"p": "P5", "en": "allocate", "ko": "할당하다", "expr": "allocate resources", "id": "P5|allocate"}, {"p": "P5", "en": "anticipate", "ko": "예상하다", "expr": "anticipate an increase", "id": "P5|anticipate"}, {"p": "P5", "en": "authorize", "ko": "승인하다 / 권한을 주다", "expr": "authorize payment", "id": "P5|authorize"}, {"p": "P5", "en": "comply with", "ko": "~을 준수하다", "expr": "comply with regulations", "id": "P5|comply with"}, {"p": "P5", "en": "conduct", "ko": "실시하다", "expr": "conduct a survey", "id": "P5|conduct"}, {"p": "P5", "en": "confirm", "ko": "확인하다", "expr": "confirm a reservation", "id": "P5|confirm"}, {"p": "P5", "en": "designate", "ko": "지정하다", "expr": "designated area", "id": "P5|designate"}, {"p": "P5", "en": "distribute", "ko": "배포하다", "expr": "distribute materials", "id": "P5|distribute"}, {"p": "P5", "en": "implement", "ko": "시행하다", "expr": "implement a policy", "id": "P5|implement"}, {"p": "P5", "en": "inquire about", "ko": "~에 대해 문의하다", "expr": "inquire about a position", "id": "P5|inquire about"}, {"p": "P5", "en": "inspect", "ko": "검사하다", "expr": "inspect equipment", "id": "P5|inspect"}, {"p": "P5", "en": "notify A of B", "ko": "A에게 B를 알리다", "expr": "notify customers of changes", "id": "P5|notify A of B"}, {"p": "P5", "en": "process", "ko": "처리하다", "expr": "process an application", "id": "P5|process"}, {"p": "P5", "en": "prohibit A from -ing", "ko": "A가 ~하는 것을 금지하다", "expr": "prohibit employees from parking", "id": "P5|prohibit A from -ing"}, {"p": "P5", "en": "reimburse", "ko": "상환하다 / 환급하다", "expr": "reimburse travel expenses", "id": "P5|reimburse"}, {"p": "P5", "en": "retain", "ko": "유지하다 / 보유하다", "expr": "retain employees", "id": "P5|retain"}, {"p": "P5", "en": "verify", "ko": "확인하다 / 검증하다", "expr": "verify information", "id": "P5|verify"}, {"p": "P5", "en": "acknowledge", "ko": "인정하다 / 확인하다", "expr": "acknowledge receipt", "id": "P5|acknowledge"}, {"p": "P5", "en": "acquire", "ko": "취득하다 / 인수하다", "expr": "acquire a company", "id": "P5|acquire"}, {"p": "P5", "en": "compensate", "ko": "보상하다", "expr": "compensate employees", "id": "P5|compensate"}, {"p": "P5", "en": "eligible", "ko": "자격이 있는", "expr": "be eligible for benefits", "id": "P5|eligible"}, {"p": "P5", "en": "available", "ko": "이용 가능한", "expr": "rooms are available", "id": "P5|available"}, {"p": "P5", "en": "complimentary", "ko": "무료의", "expr": "complimentary breakfast", "id": "P5|complimentary"}, {"p": "P5", "en": "consecutive", "ko": "연속적인", "expr": "three consecutive days", "id": "P5|consecutive"}, {"p": "P5", "en": "convenient", "ko": "편리한", "expr": "convenient location", "id": "P5|convenient"}, {"p": "P5", "en": "defective", "ko": "결함이 있는", "expr": "defective product", "id": "P5|defective"}, {"p": "P5", "en": "mandatory", "ko": "의무적인", "expr": "mandatory training", "id": "P5|mandatory"}, {"p": "P5", "en": "prospective", "ko": "잠재적인", "expr": "prospective customers", "id": "P5|prospective"}, {"p": "P5", "en": "tentative", "ko": "잠정적인", "expr": "tentative schedule", "id": "P5|tentative"}, {"p": "P5", "en": "vacant", "ko": "비어 있는", "expr": "vacant position", "id": "P5|vacant"}, {"p": "P5", "en": "considerable", "ko": "상당한", "expr": "considerable amount", "id": "P5|considerable"}, {"p": "P5", "en": "considerate", "ko": "사려 깊은", "expr": "considerate employee", "id": "P5|considerate"}, {"p": "P5", "en": "promptly", "ko": "신속하게", "expr": "respond promptly", "id": "P5|promptly"}, {"p": "P5", "en": "temporarily", "ko": "일시적으로", "expr": "temporarily unavailable", "id": "P5|temporarily"}, {"p": "P5", "en": "approximately", "ko": "대략", "expr": "approximately 20 minutes", "id": "P5|approximately"}, {"p": "P5", "en": "significantly", "ko": "상당히", "expr": "increase significantly", "id": "P5|significantly"}, {"p": "P5", "en": "highly", "ko": "매우 / 고도로", "expr": "highly effective", "id": "P5|highly"}, {"p": "P5", "en": "closely", "ko": "면밀히 / 긴밀히", "expr": "work closely with", "id": "P5|closely"}, {"p": "P5", "en": "widely", "ko": "널리", "expr": "widely used", "id": "P5|widely"}, {"p": "P5", "en": "nearly", "ko": "거의", "expr": "nearly complete", "id": "P5|nearly"}, {"p": "P5", "en": "economic", "ko": "경제의", "expr": "economic growth", "id": "P5|economic"}, {"p": "P5", "en": "economical", "ko": "경제적인", "expr": "economical option", "id": "P5|economical"}, {"p": "P5", "en": "effective", "ko": "효과적인", "expr": "effective strategy", "id": "P5|effective"}, {"p": "P5", "en": "efficient", "ko": "효율적인", "expr": "efficient process", "id": "P5|efficient"}, {"p": "P5", "en": "reliable", "ko": "신뢰할 수 있는", "expr": "reliable service", "id": "P5|reliable"}, {"p": "P5", "en": "reasonable", "ko": "합리적인", "expr": "reasonable price", "id": "P5|reasonable"}, {"p": "P5", "en": "appropriate", "ko": "적절한", "expr": "appropriate response", "id": "P5|appropriate"}, {"p": "P5", "en": "sufficient", "ko": "충분한", "expr": "sufficient time", "id": "P5|sufficient"}, {"p": "P5", "en": "additional", "ko": "추가의", "expr": "additional information", "id": "P5|additional"}, {"p": "P5", "en": "annual", "ko": "연례의 / 연간의", "expr": "annual report", "id": "P5|annual"}, {"p": "P5", "en": "financial", "ko": "재정의", "expr": "financial statement", "id": "P5|financial"}, {"p": "P5", "en": "temporary", "ko": "임시의", "expr": "temporary position", "id": "P5|temporary"}, {"p": "P5", "en": "permanent", "ko": "영구적인 / 정규의", "expr": "permanent position", "id": "P5|permanent"}, {"p": "P5", "en": "participate in", "ko": "~에 참여하다", "expr": "participate in a workshop", "id": "P5|participate in"}, {"p": "P5", "en": "respond to", "ko": "~에 응답하다", "expr": "respond to an email", "id": "P5|respond to"}, {"p": "P5", "en": "depend on", "ko": "~에 달려 있다", "expr": "depend on demand", "id": "P5|depend on"}, {"p": "P5", "en": "belong to", "ko": "~에 속하다", "expr": "belong to the company", "id": "P5|belong to"}, {"p": "P5", "en": "be aware of", "ko": "~을 알고 있다", "expr": "be aware of the policy", "id": "P5|be aware of"}, {"p": "P5", "en": "be capable of -ing", "ko": "~할 수 있다", "expr": "be capable of handling", "id": "P5|be capable of -ing"}, {"p": "P5", "en": "be responsible for", "ko": "~을 담당하다", "expr": "be responsible for sales", "id": "P5|be responsible for"}, {"p": "P5", "en": "be subject to", "ko": "~의 대상이다 / ~에 따라 달라진다", "expr": "prices are subject to change", "id": "P5|be subject to"}, {"p": "P5", "en": "be familiar with", "ko": "~에 익숙하다", "expr": "be familiar with software", "id": "P5|be familiar with"}, {"p": "P5", "en": "be satisfied with", "ko": "~에 만족하다", "expr": "be satisfied with the service", "id": "P5|be satisfied with"}, {"p": "P5", "en": "be known for", "ko": "~로 알려져 있다", "expr": "be known for quality", "id": "P5|be known for"}, {"p": "P5", "en": "be equipped with", "ko": "~을 갖추고 있다", "expr": "be equipped with Wi-Fi", "id": "P5|be equipped with"}, {"p": "P5", "en": "be based on", "ko": "~에 근거하다", "expr": "be based on survey results", "id": "P5|be based on"}, {"p": "P5", "en": "be involved in", "ko": "~에 관여하다", "expr": "be involved in a project", "id": "P5|be involved in"}, {"p": "P5", "en": "be suitable for", "ko": "~에 적합하다", "expr": "be suitable for beginners", "id": "P5|be suitable for"}, {"p": "P5", "en": "according to", "ko": "~에 따르면", "expr": "according to the report", "id": "P5|according to"}, {"p": "P5", "en": "in accordance with", "ko": "~에 따라", "expr": "in accordance with regulations", "id": "P5|in accordance with"}, {"p": "P5", "en": "regarding", "ko": "~에 관하여", "expr": "regarding your request", "id": "P5|regarding"}, {"p": "P5", "en": "regardless of", "ko": "~와 관계없이", "expr": "regardless of experience", "id": "P5|regardless of"}, {"p": "P5", "en": "in addition to", "ko": "~에 더하여", "expr": "in addition to salary", "id": "P5|in addition to"}, {"p": "P5", "en": "due to", "ko": "~ 때문에", "expr": "due to bad weather", "id": "P5|due to"}, {"p": "P5", "en": "owing to", "ko": "~ 때문에", "expr": "owing to construction", "id": "P5|owing to"}, {"p": "P5", "en": "look forward to -ing", "ko": "~하기를 기대하다", "expr": "look forward to hearing from you", "id": "P5|look forward to -ing"}, {"p": "P5", "en": "be committed to -ing", "ko": "~하는 데 전념하다", "expr": "be committed to improving quality", "id": "P5|be committed to -ing"}, {"p": "P5", "en": "result in", "ko": "~을 초래하다", "expr": "result in delays", "id": "P5|result in"}, {"p": "P5", "en": "result from", "ko": "~로부터 발생하다", "expr": "result from a system error", "id": "P5|result from"}, {"p": "P5", "en": "contribute to", "ko": "~에 기여하다", "expr": "contribute to growth", "id": "P5|contribute to"}, {"p": "P6", "en": "however", "ko": "그러나", "expr": "However, sales declined.", "id": "P6|however"}, {"p": "P6", "en": "nevertheless", "ko": "그럼에도 불구하고", "expr": "Nevertheless, the plan continued.", "id": "P6|nevertheless"}, {"p": "P6", "en": "therefore", "ko": "따라서", "expr": "Therefore, we changed the schedule.", "id": "P6|therefore"}, {"p": "P6", "en": "thus", "ko": "따라서", "expr": "Thus, costs were reduced.", "id": "P6|thus"}, {"p": "P6", "en": "consequently", "ko": "그 결과", "expr": "Consequently, demand increased.", "id": "P6|consequently"}, {"p": "P6", "en": "as a result", "ko": "결과적으로", "expr": "As a result, delivery was delayed.", "id": "P6|as a result"}, {"p": "P6", "en": "moreover", "ko": "게다가", "expr": "Moreover, the service is free.", "id": "P6|moreover"}, {"p": "P6", "en": "furthermore", "ko": "더욱이", "expr": "Furthermore, parking is available.", "id": "P6|furthermore"}, {"p": "P6", "en": "in addition", "ko": "추가로", "expr": "In addition, lunch will be provided.", "id": "P6|in addition"}, {"p": "P6", "en": "additionally", "ko": "추가로", "expr": "Additionally, members receive discounts.", "id": "P6|additionally"}, {"p": "P6", "en": "otherwise", "ko": "그렇지 않으면", "expr": "Submit today; otherwise, it will be late.", "id": "P6|otherwise"}, {"p": "P6", "en": "instead", "ko": "대신", "expr": "We will meet online instead.", "id": "P6|instead"}, {"p": "P6", "en": "meanwhile", "ko": "한편 / 그동안", "expr": "Meanwhile, the office remains open.", "id": "P6|meanwhile"}, {"p": "P6", "en": "in contrast", "ko": "대조적으로", "expr": "In contrast, online sales rose.", "id": "P6|in contrast"}, {"p": "P6", "en": "for example", "ko": "예를 들어", "expr": "For example, customers can pay online.", "id": "P6|for example"}, {"p": "P6", "en": "for instance", "ko": "예를 들어", "expr": "For instance, you may reschedule online.", "id": "P6|for instance"}, {"p": "P6", "en": "in fact", "ko": "사실은", "expr": "In fact, the service is already available.", "id": "P6|in fact"}, {"p": "P6", "en": "similarly", "ko": "비슷하게", "expr": "Similarly, the second branch expanded.", "id": "P6|similarly"}, {"p": "P6", "en": "likewise", "ko": "마찬가지로", "expr": "Likewise, all managers must attend.", "id": "P6|likewise"}, {"p": "P6", "en": "subsequently", "ko": "그 후에", "expr": "The issue was subsequently resolved.", "id": "P6|subsequently"}, {"p": "P6", "en": "accordingly", "ko": "그에 따라", "expr": "The schedule was adjusted accordingly.", "id": "P6|accordingly"}, {"p": "P6", "en": "this / these", "ko": "이것 / 이것들", "expr": "This change will take effect Monday.", "id": "P6|this / these"}, {"p": "P6", "en": "such", "ko": "그러한", "expr": "Such requests must be approved.", "id": "P6|such"}, {"p": "P6", "en": "former / latter", "ko": "전자 / 후자", "expr": "the former option / the latter option", "id": "P6|former / latter"}, {"p": "P6", "en": "otherwise stated", "ko": "달리 명시되지 않는 한", "expr": "unless otherwise stated", "id": "P6|otherwise stated"}, {"p": "P7", "en": "position", "ko": "직책 / 채용 자리", "expr": "apply for a position", "id": "P7|position"}, {"p": "P7", "en": "job opening", "ko": "채용 공고 / 빈자리", "expr": "current job openings", "id": "P7|job opening"}, {"p": "P7", "en": "candidate", "ko": "후보자 / 지원자", "expr": "qualified candidate", "id": "P7|candidate"}, {"p": "P7", "en": "applicant", "ko": "지원자", "expr": "successful applicant", "id": "P7|applicant"}, {"p": "P7", "en": "recruitment", "ko": "채용", "expr": "recruitment process", "id": "P7|recruitment"}, {"p": "P7", "en": "resume", "ko": "이력서", "expr": "submit a resume", "id": "P7|resume"}, {"p": "P7", "en": "cover letter", "ko": "자기소개서 / 지원 서신", "expr": "attach a cover letter", "id": "P7|cover letter"}, {"p": "P7", "en": "reference", "ko": "추천인 / 참고자료", "expr": "provide references", "id": "P7|reference"}, {"p": "P7", "en": "qualification", "ko": "자격 / 자격요건", "expr": "meet the qualifications", "id": "P7|qualification"}, {"p": "P7", "en": "salary", "ko": "급여", "expr": "annual salary", "id": "P7|salary"}, {"p": "P7", "en": "benefits", "ko": "복리후생", "expr": "employee benefits", "id": "P7|benefits"}, {"p": "P7", "en": "payroll", "ko": "급여 지급 명부 / 시스템", "expr": "payroll department", "id": "P7|payroll"}, {"p": "P7", "en": "probationary period", "ko": "수습 기간", "expr": "complete a probationary period", "id": "P7|probationary period"}, {"p": "P7", "en": "transfer", "ko": "전근 / 이전", "expr": "request a transfer", "id": "P7|transfer"}, {"p": "P7", "en": "resign", "ko": "사직하다", "expr": "resign from a position", "id": "P7|resign"}, {"p": "P7", "en": "retire", "ko": "은퇴하다", "expr": "retire next year", "id": "P7|retire"}, {"p": "P7", "en": "contract", "ko": "계약", "expr": "sign a contract", "id": "P7|contract"}, {"p": "P7", "en": "agreement", "ko": "합의 / 계약", "expr": "reach an agreement", "id": "P7|agreement"}, {"p": "P7", "en": "terms and conditions", "ko": "이용약관 / 계약 조건", "expr": "review the terms and conditions", "id": "P7|terms and conditions"}, {"p": "P7", "en": "renewal", "ko": "갱신", "expr": "membership renewal", "id": "P7|renewal"}, {"p": "P7", "en": "extension", "ko": "연장", "expr": "request an extension", "id": "P7|extension"}, {"p": "P7", "en": "venue", "ko": "행사 장소", "expr": "event venue", "id": "P7|venue"}, {"p": "P7", "en": "brochure", "ko": "안내 책자", "expr": "request a brochure", "id": "P7|brochure"}, {"p": "P7", "en": "catalog", "ko": "카탈로그", "expr": "product catalog", "id": "P7|catalog"}, {"p": "P7", "en": "quotation", "ko": "견적서 / 인용", "expr": "request a quotation", "id": "P7|quotation"}, {"p": "P7", "en": "tenant", "ko": "임차인", "expr": "building tenant", "id": "P7|tenant"}, {"p": "P7", "en": "landlord", "ko": "임대인", "expr": "contact the landlord", "id": "P7|landlord"}, {"p": "P7", "en": "lease", "ko": "임대차 계약 / 임대하다", "expr": "sign a lease", "id": "P7|lease"}, {"p": "P7", "en": "deposit", "ko": "보증금 / 예치금", "expr": "security deposit", "id": "P7|deposit"}, {"p": "P7", "en": "utility", "ko": "공공요금 / 공공 서비스", "expr": "utility bills", "id": "P7|utility"}, {"p": "P7", "en": "detour", "ko": "우회로", "expr": "take a detour", "id": "P7|detour"}, {"p": "P7", "en": "commute", "ko": "통근하다 / 통근", "expr": "daily commute", "id": "P7|commute"}, {"p": "P7", "en": "route", "ko": "경로 / 노선", "expr": "bus route", "id": "P7|route"}, {"p": "P7", "en": "ahead of schedule", "ko": "예정보다 일찍", "expr": "finish ahead of schedule", "id": "P7|ahead of schedule"}, {"p": "P7", "en": "behind schedule", "ko": "예정보다 늦게", "expr": "fall behind schedule", "id": "P7|behind schedule"}, {"p": "P7", "en": "on schedule", "ko": "예정대로", "expr": "project is on schedule", "id": "P7|on schedule"}, {"p": "P7", "en": "proof of purchase", "ko": "구매 증빙", "expr": "provide proof of purchase", "id": "P7|proof of purchase"}, {"p": "P7", "en": "free of charge", "ko": "무료로", "expr": "replacement free of charge", "id": "P7|free of charge"}, {"p": "P7", "en": "call off", "ko": "취소하다", "expr": "call off a meeting", "id": "P7|call off"}, {"p": "P7", "en": "deal with", "ko": "문제를 다루다", "expr": "deal with a complaint", "id": "P7|deal with"}];
-const QUIZ=[{"id": "p1-1", "p": "P1", "q": "사진: 남자가 선반 쪽으로 손을 뻗고 있다. 가장 적절한 문장은?", "c": ["A man is reaching for an item on a shelf.", "A man is sweeping the floor.", "Some boxes are being unloaded.", "A shelf is being assembled."], "a": 0, "e": "reach for = ~을 잡으려고 손을 뻗다."}, {"id": "p1-2", "p": "P1", "q": "사진: 회의실 탁자 주위로 의자들이 놓여 있다.", "c": ["Some chairs are arranged around a table.", "Some chairs are being carried outside.", "A table is being repaired.", "People are leaving the room."], "a": 0, "e": "be arranged around = ~주위에 배열되어 있다."}, {"id": "p1-3", "p": "P1", "q": "사진: 벽에 모니터가 설치되어 있다.", "c": ["A monitor is mounted on the wall.", "A monitor is being packed.", "A wall is being removed.", "A desk is being assembled."], "a": 0, "e": "be mounted on = ~에 설치되어 있다."}, {"id": "p1-4", "p": "P1", "q": "사진: 여러 자동차가 건물 앞에 이미 세워져 있다.", "c": ["Several cars are parked in front of a building.", "Several cars are being washed.", "A building is being painted.", "Drivers are boarding a train."], "a": 0, "e": "이미 세워진 상태는 are parked."}, {"id": "p2-1", "p": "P2", "q": "Who is in charge of the training session?", "c": ["Ms. Patel is.", "In the conference room.", "At three o'clock."], "a": 0, "e": "Who → 사람/담당자 답."}, {"id": "p2-2", "p": "P2", "q": "Where should I leave these packages?", "c": ["On the counter is fine.", "About two kilograms.", "I left yesterday."], "a": 0, "e": "Where → 장소."}, {"id": "p2-3", "p": "P2", "q": "Have you finished the budget report?", "c": ["I'm still working on it.", "Yes, the budget is large.", "On her desk."], "a": 0, "e": "간접답변: 아직 작업 중 = 아직 완료하지 않음."}, {"id": "p2-4", "p": "P2", "q": "Would you mind closing the window?", "c": ["Not at all.", "Yes, I minded it.", "The window is large."], "a": 0, "e": "Would you mind ~? 수락은 Not at all."}, {"id": "p2-5", "p": "P2", "q": "Which printer should we buy?", "c": ["Either one is fine.", "It was printed yesterday.", "Near the front desk."], "a": 0, "e": "Which → 선택. Either one = 둘 중 어느 쪽이든."}, {"id": "p3-1", "p": "P3", "q": "What problem are the speakers discussing?", "c": ["A broken copier", "A delayed shipment", "A missing invoice", "A canceled meeting"], "a": 0, "e": "out of order = 고장 난.", "context": "M: The copier on the third floor is out of order again.\\nW: I'll call the service company. They can send a technician this afternoon."}, {"id": "p3-2", "p": "P3", "q": "What will the woman probably do next?", "c": ["Contact a service company", "Order a new desk", "Move to another floor", "Print an invoice"], "a": 0, "e": "I'll call the service company → 다음 행동.", "context": "M: The copier on the third floor is out of order again.\\nW: I'll call the service company. They can send a technician this afternoon."}, {"id": "p3-3", "p": "P3", "q": "Why can't the woman take the 2 p.m. tour?", "c": ["It is fully booked.", "It has been canceled.", "It is too expensive.", "It starts too late."], "a": 0, "e": "fully booked = 예약이 꽉 찬.", "context": "W: I wanted to book the 2 p.m. museum tour, but it's fully booked.\\nM: The 3:30 tour still has several seats available."}, {"id": "p3-4", "p": "P3", "q": "What happened to the order?", "c": ["Its delivery was delayed.", "It was canceled.", "It was delivered to the wrong address.", "It was returned."], "a": 0, "e": "one-day delay = 배송 지연.", "context": "W: Your order was supposed to arrive today, but the carrier reported a one-day delay.\\nM: Please e-mail me the updated tracking information."}, {"id": "p4-1", "p": "P4", "q": "What is the purpose of the announcement?", "c": ["To announce a platform change", "To advertise a train pass", "To report a lost item", "To cancel all trains"], "a": 0, "e": "Platform 6 instead of Platform 4 = 승강장 변경.", "context": "Attention passengers. Because of track maintenance, trains to Westport will depart from Platform 6 instead of Platform 4 until 2 p.m."}, {"id": "p4-2", "p": "P4", "q": "Why has the change been made?", "c": ["Because of track maintenance", "Because of bad weather", "Because of a staff shortage", "Because of a special event"], "a": 0, "e": "Because of track maintenance가 직접 원인.", "context": "Attention passengers. Because of track maintenance, trains to Westport will depart from Platform 6 instead of Platform 4 until 2 p.m."}, {"id": "p4-3", "p": "P4", "q": "What must listeners do to receive a discount?", "c": ["Register by September 18", "Pay 120 dollars today", "Call the conference center", "Join a membership program"], "a": 0, "e": "no later than September 18 = 늦어도 9/18까지.", "context": "To receive the conference discount, register online no later than September 18. After that date, the standard fee will apply."}, {"id": "p5-1", "p": "P5", "q": "The new software is highly _____ and easy to use.", "c": ["effect", "effective", "effectively", "effectiveness"], "a": 1, "e": "be동사 뒤 보어 자리 → 형용사 effective."}, {"id": "p5-2", "p": "P5", "q": "The manager reviewed the proposal _____.", "c": ["care", "careful", "carefully", "carefulness"], "a": 2, "e": "reviewed를 꾸미므로 부사 carefully."}, {"id": "p5-3", "p": "P5", "q": "A number of employees _____ attending the seminar.", "c": ["is", "are", "was", "has"], "a": 1, "e": "a number of + 복수명사 → 복수동사."}, {"id": "p5-4", "p": "P5", "q": "The number of online orders _____ increased this month.", "c": ["have", "are", "has", "were"], "a": 2, "e": "the number of + 복수명사 → 단수 주어."}, {"id": "p5-5", "p": "P5", "q": "The report must be _____ by Friday.", "c": ["submit", "submitted", "submitting", "submission"], "a": 1, "e": "must be + p.p. 수동태."}, {"id": "p5-6", "p": "P5", "q": "_____ the heavy rain, the outdoor event continued.", "c": ["Although", "Despite", "Because", "While"], "a": 1, "e": "뒤가 명사 the heavy rain → Despite."}, {"id": "p5-7", "p": "P5", "q": "_____ the weather was bad, the flight departed on time.", "c": ["Despite", "Because of", "Although", "During"], "a": 2, "e": "뒤가 S+V → Although."}, {"id": "p5-8", "p": "P5", "q": "We look forward to _____ from you soon.", "c": ["hear", "hearing", "heard", "have heard"], "a": 1, "e": "look forward to의 to는 전치사 → -ing."}, {"id": "p5-9", "p": "P5", "q": "Employees should avoid _____ confidential files by e-mail.", "c": ["send", "to send", "sending", "sent"], "a": 2, "e": "avoid + -ing."}, {"id": "p5-10", "p": "P5", "q": "All staff members must comply _____ the new security policy.", "c": ["to", "with", "for", "on"], "a": 1, "e": "comply with = ~을 준수하다."}, {"id": "p5-11", "p": "P5", "q": "The final price depends _____ the quantity ordered.", "c": ["at", "for", "on", "to"], "a": 2, "e": "depend on."}, {"id": "p5-12", "p": "P5", "q": "Only members are eligible _____ the discount.", "c": ["to", "for", "with", "of"], "a": 1, "e": "be eligible for."}, {"id": "p5-13", "p": "P5", "q": "The schedule is subject _____ change without notice.", "c": ["for", "to", "with", "at"], "a": 1, "e": "be subject to = 변경될 수 있다."}, {"id": "p5-14", "p": "P5", "q": "The equipment will be delivered _____ three business days.", "c": ["among", "within", "throughout", "since"], "a": 1, "e": "within + 기간 = ~이내에."}, {"id": "p5-15", "p": "P5", "q": "The work was completed in accordance _____ the safety guidelines.", "c": ["to", "with", "for", "on"], "a": 1, "e": "in accordance with."}, {"id": "p6-1", "p": "P6", "q": "Sales declined in May. _____, they recovered in June.", "c": ["However", "Therefore", "For example", "Similarly"], "a": 0, "e": "declined ↔ recovered 대조 → However."}, {"id": "p6-2", "p": "P6", "q": "The road will be closed tomorrow. _____, employees should use the west entrance.", "c": ["Therefore", "However", "For instance", "Meanwhile"], "a": 0, "e": "원인 → 결과 관계이므로 Therefore."}, {"id": "p6-3", "p": "P6", "q": "We added online reservations. _____, customers can now change bookings themselves.", "c": ["As a result", "In contrast", "Nevertheless", "Otherwise"], "a": 0, "e": "결과를 나타내는 As a result."}, {"id": "p7-1", "p": "P7", "q": "Applicants must submit a résumé no later than September 20. What is the deadline?", "c": ["September 20", "September 21", "Before September", "No deadline"], "a": 0, "e": "no later than = 늦어도 ~까지."}, {"id": "p7-2", "p": "P7", "q": "The store will remain closed through Friday and reopen on Saturday. When will it reopen?", "c": ["Friday", "Saturday", "Sunday", "Monday"], "a": 1, "e": "through Friday = 금요일까지 닫힘 → 토요일 재개."}, {"id": "p7-3", "p": "P7", "q": "Your replacement item has already been shipped. What has happened?", "c": ["A replacement was sent.", "A refund was issued.", "The order was canceled.", "Payment failed."], "a": 0, "e": "replacement item = 교체품, shipped = 발송됨."}, {"id": "p7-4", "p": "P7", "q": "The workshop is complimentary for members. What does complimentary mean here?", "c": ["Free of charge", "Optional", "Expensive", "Limited"], "a": 0, "e": "complimentary = 무료의."}];
 
-const STORAGE_KEY='toeic_complete_review_v5';
-let state={reviewWords:{},reviewQuestions:{},answers:{}};
-try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)state={...state,...JSON.parse(raw)};}catch(e){}
-if(!state.reviewWords)state.reviewWords={}; if(!state.reviewQuestions)state.reviewQuestions={}; if(!state.answers)state.answers={};
+/*
+  0911 기존 버전
+  → LC/RC 상세 개념
+  → 파트별 빈출 표현
+  → 문제풀이
+  → 오답/체크 기능
+  전부 그대로 사용
 
-const tabs=[['lc','LC'],['rc','RC'],['words','단어장'],['quiz','파트별 문제풀이'],['strategy','활용법·공부전략']];
-let activeTab='lc',wordFilter='all',quizFilter='all';
+  단어장만 현재 300단어 버전으로 교체
+*/
 
-function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}updateStats();}
-function validReviewWordCount(){const ids=new Set(VOCAB.map(x=>x.id));return Object.entries(state.reviewWords).filter(([id,v])=>v&&ids.has(id)).length;}
-function updateStats(){
- document.getElementById('reviewWordCount').textContent=validReviewWordCount();
- document.getElementById('reviewQuestionCount').textContent=Object.values(state.reviewQuestions).filter(Boolean).length;
-}
+const VOCAB_SOURCE_URLS = [
+  'https://raw.githubusercontent.com/pangisgood/toeic-7day-study/03a08217dd0978ccec3cb683f0866f4f5b37adc8/index.html',
+  'https://cdn.jsdelivr.net/gh/pangisgood/toeic-7day-study@03a08217dd0978ccec3cb683f0866f4f5b37adc8/index.html'
+];
 
-function renderTabs(){
- document.getElementById('tabs').innerHTML=tabs.map(([id,label])=>`<button class="tab ${activeTab===id?'active':''}" data-action="tab" data-tab="${id}">${label}</button>`).join('');
-}
 
-function partCard(x){
- return `<div class="card ${x.group==='RC'?'rc':''}">
- <div class="part-head"><span class="part-pill">${x.part}</span><div><div class="part-title">${esc(x.title)}</div><div class="muted">${esc(x.desc)}</div></div></div>
- <div class="goal"><b>목표</b> · ${esc(x.goal)}</div>
- <div class="section-title">핵심 포인트</div><ul class="tips">${x.tips.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
- <div class="section-title">빈출 표현</div><div class="rows">${x.rows.map(r=>`<div class="row"><b>${esc(r[0])}</b><span>${esc(r[1])}</span></div>`).join('')}</div>
- </div>`;
-}
+const NEW_RENDER_WORDS = `function renderWords(){
 
-function renderStudy(group){
- return PARTS.filter(x=>x.group===group).map(partCard).join('');
-}
-
-function renderWords(){
  let items=VOCAB;
- if(wordFilter==='review')items=items.filter(x=>state.reviewWords[x.id]);
- else if(wordFilter!=='all')items=items.filter(x=>x.p===wordFilter);
- const count=validReviewWordCount();
- return `<div class="card"><h2>TOEIC 핵심 300</h2>
- <div class="note"><b>단어 + 실제 빈출 표현</b>을 같이 보는 단어장입니다. 모르는 단어는 체크하면 상단 <b>다시 볼 단어</b>에 저장됩니다.</div>
- <div class="filters">${['all','review','P1','P2','P3','P4','P5','P6','P7'].map(f=>`<button class="filter ${f===wordFilter?'active':''}" data-action="word-filter" data-filter="${f}">${f==='all'?'전체':f==='review'?`다시 볼 단어 (${count})`:f}</button>`).join('')}</div>
- <div class="count">현재 ${items.length}개 표시 · 전체 300개</div>
- ${items.length?items.map(x=>`<label class="word"><input type="checkbox" data-action="word-review" data-id="${esc(x.id)}" ${state.reviewWords[x.id]?'checked':''}><div><b>${esc(x.en)}</b><small>${esc(x.ko)}</small><small class="expr">빈출 · ${esc(x.expr||x.en)}</small></div><span class="chip">${x.p}</span></label>`).join(''):'<div class="note">체크한 단어가 없습니다.</div>'}
- </div>`;
+
+ if(wordFilter==='review'){
+   items=items.filter(x=>state.reviewWords[x.id]);
+ }
+ else if(wordFilter!=='all'){
+   items=items.filter(x=>x.p===wordFilter);
+ }
+
+ const validIds=new Set(VOCAB.map(x=>x.id));
+
+ const count=Object.entries(state.reviewWords)
+   .filter(([id,v])=>v && validIds.has(id))
+   .length;
+
+ return \`
+ <div class="card">
+
+   <h2>TOEIC 핵심 300</h2>
+
+   <div class="note">
+     <b>단어 + 실제 빈출 표현</b>을 같이 보는 단어장입니다.
+     모르는 단어는 체크하면 상단
+     <b>다시 볼 단어</b>에 저장됩니다.
+   </div>
+
+   <div class="filters">
+
+     \${[
+       'all',
+       'review',
+       'P1',
+       'P2',
+       'P3',
+       'P4',
+       'P5',
+       'P6',
+       'P7'
+     ].map(f=>\`
+
+       <button
+         class="filter \${f===wordFilter?'active':''}"
+         data-action="word-filter"
+         data-filter="\${f}"
+       >
+
+       \${
+         f==='all'
+         ? '전체'
+         : f==='review'
+         ? \`다시 볼 단어 (\${count})\`
+         : f
+       }
+
+       </button>
+
+     \`).join('')}
+
+   </div>
+
+   <div class="count">
+     현재 \${items.length}개 표시 · 전체 300개
+   </div>
+
+   \${
+     items.length
+
+     ? items.map(x=>\`
+
+       <label class="word">
+
+         <input
+           type="checkbox"
+           data-action="word-review"
+           data-id="\${esc(x.id)}"
+           \${state.reviewWords[x.id]?'checked':''}
+         >
+
+         <div>
+
+           <b>\${esc(x.en)}</b>
+
+           <small>
+             \${esc(x.ko)}
+           </small>
+
+           \${
+             x.expr
+             ? \`<small class="expr">
+                  빈출 · \${esc(x.expr)}
+                </small>\`
+             : ''
+           }
+
+         </div>
+
+         <span class="chip">
+           \${x.p}
+         </span>
+
+       </label>
+
+     \`).join('')
+
+     : '<div class="note">체크한 단어가 없습니다.</div>'
+   }
+
+ </div>
+ \`;
+
+}`;
+
+
+
+async function fetchText(urls){
+
+ let lastError;
+
+ for(const url of urls){
+
+   try{
+
+     const res=await fetch(
+       url,
+       {cache:'no-store'}
+     );
+
+     if(!res.ok){
+       throw new Error(
+         'HTTP '+res.status
+       );
+     }
+
+     return await res.text();
+
+   }
+   catch(e){
+
+     lastError=e;
+
+   }
+
+ }
+
+ throw lastError ||
+   new Error(
+     '파일을 불러오지 못했습니다.'
+   );
+
 }
 
-function quizItem(x){
- const selected=state.answers[x.id];
- const answered=selected!==undefined;
- return `<div class="quiz-item">
- <div class="qtop"><span class="chip">${x.p}</span><label class="review-check"><input type="checkbox" data-action="quiz-review" data-id="${x.id}" ${state.reviewQuestions[x.id]?'checked':''}>다시 볼 문제</label></div>
- ${x.context?`<div class="context">${esc(x.context)}</div>`:''}
- <div class="q">${esc(x.q)}</div>
- <div class="choices">${x.c.map((c,i)=>`<button class="choice ${answered?(i===x.a?'correct':i===selected?'wrong':''):''}" data-action="answer" data-id="${x.id}" data-index="${i}">${String.fromCharCode(65+i)}. ${esc(c)}</button>`).join('')}</div>
- ${answered?`<div class="result">${selected===x.a?'정답':'오답'}</div><div class="explain">${esc(x.e)}</div>`:''}
- </div>`;
-}
 
-function renderQuiz(){
- let items=QUIZ;
- if(quizFilter==='review')items=items.filter(x=>state.reviewQuestions[x.id]);
- else if(quizFilter!=='all')items=items.filter(x=>x.p===quizFilter);
- const count=Object.values(state.reviewQuestions).filter(Boolean).length;
- return `<div class="card"><h2>파트별 문제풀이</h2>
- <div class="note">문제를 풀고 바로 정답·해설을 확인하세요. 다시 볼 문제에 체크하면 상단 카운트에 저장됩니다.</div>
- <div class="filters">${['all','review','P1','P2','P3','P4','P5','P6','P7'].map(f=>`<button class="filter ${f===quizFilter?'active':''}" data-action="quiz-filter" data-filter="${f}">${f==='all'?'전체':f==='review'?`다시 볼 문제 (${count})`:f}</button>`).join('')}</div>
- <div class="count">현재 ${items.length}문제 표시</div>
- ${items.length?items.map(quizItem).join(''):'<div class="note">체크한 문제가 없습니다.</div>'}
- </div>`;
-}
 
-function renderStrategy(){
- const steps=[
- ['1','LC는 첫 의문사·상황을 놓치지 않는 연습부터. 틀린 문제는 소리와 정답 근거를 같이 복습.'],
- ['2','Part 5는 10~20초 판단. 품사·수일치·전치사/접속사부터 자동화.'],
- ['3','Part 6는 빈칸 앞뒤 한 문장까지 읽어 연결어·지시어를 확인.'],
- ['4','Part 7은 문제 먼저 읽고 날짜·이름·가격·요청사항을 근거로 검색.'],
- ['5','단어장은 뜻만 외우지 말고 아래 빈출 표현까지 한 덩어리로 암기.'],
- ['6','시험에서는 Part 5 약 10분, Part 6 약 8분, Part 7에 50분 이상 확보.']
- ];
- return `<div class="card"><h2>활용법 · 공부전략</h2><div class="note">짧게 여러 번 반복하는 용도로 만든 개인용 TOEIC 대시보드입니다.</div>${steps.map(s=>`<div class="strategy-step"><div class="step-no">${s[0]}</div><div>${esc(s[1])}</div></div>`).join('')}</div>`;
-}
+(async()=>{
 
-function render(){
- renderTabs();
- let html='';
- if(activeTab==='lc')html=renderStudy('LC');
- if(activeTab==='rc')html=renderStudy('RC');
- if(activeTab==='words')html=renderWords();
- if(activeTab==='quiz')html=renderQuiz();
- if(activeTab==='strategy')html=renderStrategy();
- document.getElementById('pages').innerHTML=`<div class="page active">${html}</div>`;
- updateStats();
- window.scrollTo({top:0,behavior:'smooth'});
-}
+ try{
 
-document.addEventListener('click',e=>{
- const el=e.target.closest('[data-action]');
- if(!el)return;
- const action=el.dataset.action;
- if(action==='tab'){activeTab=el.dataset.tab;render();}
- if(action==='open-review-words'){activeTab='words';wordFilter='review';render();}
- if(action==='open-review-questions'){activeTab='quiz';quizFilter='review';render();}
- if(action==='word-filter'){wordFilter=el.dataset.filter;render();}
- if(action==='quiz-filter'){quizFilter=el.dataset.filter;render();}
- if(action==='answer'){state.answers[el.dataset.id]=Number(el.dataset.index);save();render();}
-});
+   /*
+     ① 0911 원본 HTML 불러오기
+   */
 
-document.addEventListener('change',e=>{
- const el=e.target;
- if(el.dataset.action==='word-review'){state.reviewWords[el.dataset.id]=el.checked;save();}
- if(el.dataset.action==='quiz-review'){state.reviewQuestions[el.dataset.id]=el.checked;save();}
-});
+   const [
+     baseHtml,
+     vocabHtml
+   ] = await Promise.all([
 
-render();
+     fetchText([
+       './260911_index.html'
+     ]),
+
+     fetchText(
+       VOCAB_SOURCE_URLS
+     )
+
+   ]);
+
+
+   /*
+     ② 현재 300단어 VOCAB 부분만 추출
+   */
+
+   const sourceVocabStart =
+     vocabHtml.indexOf(
+       'const VOCAB=['
+     );
+
+   const sourceQuizStart =
+     vocabHtml.indexOf(
+       'const QUIZ=[',
+       sourceVocabStart
+     );
+
+
+   if(
+     sourceVocabStart < 0 ||
+     sourceQuizStart < 0
+   ){
+
+     throw new Error(
+       '새 단어장 영역을 찾지 못했습니다.'
+     );
+
+   }
+
+
+   const newVocabSource =
+     vocabHtml.slice(
+       sourceVocabStart,
+       sourceQuizStart
+     );
+
+
+   /*
+     ③ 0911 HTML에서 기존 VOCAB만 교체
+   */
+
+   let html = baseHtml;
+
+
+   const vocabStart =
+     html.indexOf(
+       'const VOCAB=['
+     );
+
+
+   const quizStart =
+     html.indexOf(
+       'const QUIZ=[',
+       vocabStart
+     );
+
+
+   if(
+     vocabStart < 0 ||
+     quizStart < 0
+   ){
+
+     throw new Error(
+       '0911 단어장 영역을 찾지 못했습니다.'
+     );
+
+   }
+
+
+   html =
+
+     html.slice(
+       0,
+       vocabStart
+     )
+
+     +
+
+     newVocabSource
+
+     +
+
+     html.slice(
+       quizStart
+     );
+
+
+   /*
+     ④ 단어 밑 빈출 표현 스타일 추가
+   */
+
+   html = html.replace(
+
+     '.word small{display:block;color:var(--muted);font-size:13px}',
+
+     '.word small{display:block;color:var(--muted);font-size:13px}.word small.expr{color:var(--blue);margin-top:3px;font-size:12px}'
+
+   );
+
+
+   if(
+     !html.includes(
+       '.word small.expr'
+     )
+   ){
+
+     html = html.replace(
+
+       '.chip{display:inline-block;',
+
+       '.word small.expr{color:var(--blue);margin-top:3px;font-size:12px}.chip{display:inline-block;'
+
+     );
+
+   }
+
+
+   /*
+     ⑤ 기존 단어장 화면만
+        300단어용 화면으로 교체
+   */
+
+   const rwStart =
+     html.indexOf(
+       'function renderWords(){'
+     );
+
+
+   const quizItemStart =
+     html.indexOf(
+       'function quizItem',
+       rwStart
+     );
+
+
+   if(
+     rwStart < 0 ||
+     quizItemStart < 0
+   ){
+
+     throw new Error(
+       '0911 단어 렌더링 영역을 찾지 못했습니다.'
+     );
+
+   }
+
+
+   html =
+
+     html.slice(
+       0,
+       rwStart
+     )
+
+     +
+
+     NEW_RENDER_WORDS
+
+     +
+
+     '\\n'
+
+     +
+
+     html.slice(
+       quizItemStart
+     );
+
+
+   /*
+     ⑥ 예전 단어 체크 기록 중
+        현재 300단어에 없는 항목 제외
+   */
+
+   html = html.replace(
+
+     'const rw=Object.values(state.reviewWords).filter(Boolean).length;',
+
+     'const validWordIds=new Set(VOCAB.map(x=>x.id)); const rw=Object.entries(state.reviewWords).filter(([id,v])=>v&&validWordIds.has(id)).length;'
+
+   );
+
+
+   /*
+     ⑦ 완성된 0911 기반 페이지 출력
+   */
+
+   document.open();
+
+   document.write(
+     html
+   );
+
+   document.close();
+
+
+ }
+ catch(err){
+
+   console.error(err);
+
+
+   document
+     .getElementById(
+       'loading'
+     )
+     .innerHTML =
+
+     '<div>' +
+
+       '<b>페이지를 불러오지 못했습니다.</b>' +
+
+       '<span>잠시 후 새로고침해주세요.</span>' +
+
+     '</div>';
+
+ }
+
+})();
+
 </script>
+
 </body>
 </html>
